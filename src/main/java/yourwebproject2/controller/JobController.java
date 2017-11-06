@@ -56,7 +56,7 @@ public class JobController extends BaseController {
         job.setCategory(category);
         job.setCallbackUrl(jobDTO.getCallbackURL());
         job.setSubmitTime(new Date(System.currentTimeMillis()));
-        job.setStatus(Job.Status.NEW);
+     //   job.setStatus(Job.Status.NEW);
         job.setRetryCount(0);
 
         jobService.insert(job);
