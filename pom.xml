@@ -235,6 +235,17 @@
             <version>${apacheXercesImpl.version}</version>
         </dependency>
 
+		<dependency>
+		   <groupId>org.apache.tomcat</groupId>
+		   <artifactId>tomcat-catalina</artifactId>
+		   <version>8.0.5</version>
+		</dependency>
+		
+		<dependency>
+		 <groupId>com.thetransactioncompany</groupId>
+		 <artifactId>cors-filter</artifactId>
+		 <version>2.4</version>
+		</dependency>
 
         <!-- Joda Time Library -->
         <dependency>

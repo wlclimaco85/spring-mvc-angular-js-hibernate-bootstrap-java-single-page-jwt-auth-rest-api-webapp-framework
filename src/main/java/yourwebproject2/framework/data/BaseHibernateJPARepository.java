@@ -1,14 +1,16 @@
 package yourwebproject2.framework.data;
 
+import java.io.Serializable;
+import java.util.Collection;
+
 import org.hibernate.Criteria;
 import org.hibernate.FlushMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * Generic CRUD Repository class functionality with Hibernate Session Factory
@@ -34,9 +36,27 @@ public abstract class BaseHibernateJPARepository<T extends Entity, ID extends Se
 
     @Transactional
     public T insert(T object) {
-        sessionFactory.getCurrentSession().setFlushMode(FlushMode.AUTO);
-        sessionFactory.getCurrentSession().save(object);
-        sessionFactory.getCurrentSession().flush();
+    	
+    	Session sess = sessionFactory.openSession();
+    	 Transaction tx;
+    	 tx = sess.beginTransaction();
+    	 try {
+    	     
+    	     //do some work
+    	    	sessionFactory.getCurrentSession().setFlushMode(FlushMode.AUTO);
+    	        sessionFactory.getCurrentSession().save(object);
+    	        sessionFactory.getCurrentSession().flush();
+    	     tx.commit();
+    	 }
+    	 catch (Exception e) {
+    	     if (tx!=null) tx.rollback();
+    	     throw e;
+    	 }
+    	 finally {
+    	     sess.close();
+    	 }
+    	
+
         return object;
     }
 

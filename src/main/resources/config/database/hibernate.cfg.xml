@@ -9,7 +9,8 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <!-- You will usually want to set this to true while debugging hibernate queries -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">true</property>  
+		<property name="hibernate.format_sql">true</property>  
 
         <!-- Map the app related object entity classes here -->
         <mapping class="yourwebproject2.model.entity.User" />
