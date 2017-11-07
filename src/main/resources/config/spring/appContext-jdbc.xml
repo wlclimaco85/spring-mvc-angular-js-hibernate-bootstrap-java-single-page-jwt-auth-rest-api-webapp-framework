@@ -27,25 +27,11 @@
 	<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ywp2_dev"/>
         <property name="user" value="root"/>
         <property name="password" value="n6j7y7a5"/>
-	<!-- pool sizing -->
-	<property name="initialPoolSize" value="3" />
-	<property name="minPoolSize" value="6" />
-	<property name="maxPoolSize" value="25" />
-	<property name="acquireIncrement" value="3" />
-	<property name="maxStatements" value="0" />
-	<!-- retries -->
-	<property name="acquireRetryAttempts" value="30" />
-	<property name="acquireRetryDelay" value="1000" /> <!-- 1s -->
-	<property name="breakAfterAcquireFailure" value="false" />
-	<!-- refreshing connections -->
-	<property name="maxIdleTime" value="180" /> <!-- 3min -->
-	<property name="maxConnectionAge" value="10" /> <!-- 1h -->
-	<!-- timeouts and testing -->
-	<property name="checkoutTimeout" value="5000" /> <!-- 5s -->
-	<property name="idleConnectionTestPeriod" value="60" /> <!-- 60 -->
-	<property name="testConnectionOnCheckout" value="true" />
-	<property name="preferredTestQuery" value="SELECT 1" />
-        <property name="testConnectionOnCheckin" value="true" />
+	<property name="minPoolSize" value="5" />
+        <property name="maxPoolSize" value="20" />
+        <property name="maxStatements" value="50" />
+        <property name="idleConnectionTestPeriod" value="3000" />
+        <property name="loginTimeout" value="300" />
 </bean>
 
     <bean id="improvedNamingStrategy" class="org.hibernate.cfg.ImprovedNamingStrategy"/>
@@ -63,7 +49,6 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
                 <prop key="hibernate.hbm2dll.auto">update</prop>  
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="c3p0.max_size">20</prop>
